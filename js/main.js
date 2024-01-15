@@ -51,3 +51,17 @@ arrowPrev.addEventListener("click", function () {
   allSlides[currentSlide].classList.add("active");
   allPrevSlides[currentSlide].classList.add("p-active");
 });
+
+// array delle thumblist
+const thumbList = document.querySelectorAll(".p-slide");
+
+// ciclo per creazione event listener sulle thumb
+for (let i = 0; i < thumbList.length; i++) {
+  thumbList[i].addEventListener("click", function () {
+    thumbList[currentSlide].classList.remove("p-active");
+    this.classList.add("p-active");
+    allSlides[currentSlide].classList.remove("active");
+    allSlides[i].classList.add("active");
+    currentSlide = i;
+  });
+}
