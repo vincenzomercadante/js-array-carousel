@@ -13,12 +13,19 @@
   background-color: antiquewhite;
 }
 
-/* ! carousel */
-.carousel-container {
+/* ! container */
+.container {
   width: 1200px;
   height: 600px;
-  position: relative;
+  display: flex;
+}
+
+/* ? carousel */
+.carousel-container {
   border-radius: 20px;
+  width: 80%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
 }
 
@@ -31,6 +38,10 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.active {
+  display: block;
 }
 
 .arrow-prev,
@@ -57,6 +68,21 @@
   top: 30px;
 }
 
-.active {
-  display: block;
+/* ? preview */
+.preview {
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-slide {
+  border-radius: 20px;
+  height: calc(100% / 5);
+  object-fit: cover;
+  filter: brightness(50%);
+}
+
+.p-active {
+  filter: brightness(100%);
 }
