@@ -59,7 +59,7 @@ const thumbList = document.querySelectorAll(".p-slide");
 for (let i = 0; i < thumbList.length; i++) {
   thumbList[i].addEventListener("click", function () {
     thumbList[currentSlide].classList.remove("p-active");
-    this.classList.add("p-active");
+    thumbList[i].classList.add("p-active");
     allSlides[currentSlide].classList.remove("active");
     allSlides[i].classList.add("active");
     currentSlide = i;

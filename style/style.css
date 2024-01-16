@@ -57,6 +57,7 @@
   font-size: 1.5rem;
   color: #333;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .arrow-next {
@@ -83,6 +84,7 @@
   height: calc(100% / 5);
   object-fit: cover;
   filter: brightness(50%);
+  cursor: pointer;
 }
 
 .p-active {
@@ -91,7 +93,6 @@
 
 .preview {
   transition: all 0.3s linear;
-  transform-origin: left;
 }
 
 .carousel-container:hover .preview {
