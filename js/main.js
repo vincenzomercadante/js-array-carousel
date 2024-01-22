@@ -10,6 +10,7 @@ const thumbContainer = document.querySelector(".preview");
 // ciclo per la generazione degli elementi HTML
 let slideHTML = "";
 let thumbHTML = "";
+
 for (let i = 0; i < allImage.length; i++) {
   // aggiunta della classe active sul primo elemento
   let activeClass = i == 0 ? "active" : "";
@@ -27,29 +28,17 @@ const allPrevSlides = document.getElementsByClassName("p-slide");
 // variabile per visualizzare la slide corrente
 let currentSlide = 0;
 
+setInterval(function () {
+  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "next");
+}, 3000);
+
 // creazione event listeners dei due bottoni
 arrowNext.addEventListener("click", function () {
-  // rimozione classe active alla slide corrente
-  allSlides[currentSlide].classList.remove("active");
-  allPrevSlides[currentSlide].classList.remove("p-active");
-  // incremento per cambio slide
-  currentSlide++;
-  if (currentSlide >= allSlides.length) currentSlide = 0;
-  //   assegnazione classe active alla nuova slide corrente
-  allSlides[currentSlide].classList.add("active");
-  allPrevSlides[currentSlide].classList.add("p-active");
+  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "next");
 });
 
 arrowPrev.addEventListener("click", function () {
-  // rimozione classe active alla slide corrente
-  allSlides[currentSlide].classList.remove("active");
-  allPrevSlides[currentSlide].classList.remove("p-active");
-  // decremento per cambio slide
-  currentSlide--;
-  if (currentSlide < 0) currentSlide = 4;
-  //   assegnazione classe active alla nuova slide corrente
-  allSlides[currentSlide].classList.add("active");
-  allPrevSlides[currentSlide].classList.add("p-active");
+  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "prev");
 });
 
 // array delle thumblist
