@@ -22,35 +22,45 @@ for (let i = 0; i < allImage.length; i++) {
 // stampa su pagina delle immagini generate
 slideContainer.innerHTML += slideHTML;
 thumbContainer.innerHTML += thumbHTML;
+
 // array di tutte le slide
 const allSlides = document.getElementsByClassName("slide");
 const allPrevSlides = document.getElementsByClassName("p-slide");
 // variabile per visualizzare la slide corrente
 let currentSlide = 0;
 
-setInterval(function () {
-  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "next");
+// intervallo in cui si cambia la slide
+let clock = setInterval(function () {
+  currentSlide = slideChanger(currentSlide + 1);
 }, 3000);
 
-// creazione event listeners dei due bottoni
+// creazione event listeners del bottone next
 arrowNext.addEventListener("click", function () {
-  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "next");
+  currentSlide = slideChanger(currentSlide + 1);
 });
 
+// creazione event listeners del bottone prev
 arrowPrev.addEventListener("click", function () {
-  currentSlide = slideChanger(allSlides, allPrevSlides, currentSlide, "prev");
+  currentSlide = slideChanger(currentSlide - 1);
 });
 
-// array delle thumblist
-const thumbList = document.querySelectorAll(".p-slide");
+// evento quando abbandono il mouse dal container
+slideContainer.addEventListener("mouseleave", function () {
+  clock = setInterval(function () {
+    currentSlide = slideChanger(currentSlide + 1);
+  }, 3000);
+});
 
+// evento quando passo sopra al container con il mouse
+slideContainer.addEventListener("mouseover", function () {
+  clearInterval(clock);
+});
+
+// array delle thumb
+const thumbList = document.querySelectorAll(".p-slide");
 // ciclo per creazione event listener sulle thumb
 for (let i = 0; i < thumbList.length; i++) {
   thumbList[i].addEventListener("click", function () {
-    thumbList[currentSlide].classList.remove("p-active");
-    thumbList[i].classList.add("p-active");
-    allSlides[currentSlide].classList.remove("active");
-    allSlides[i].classList.add("active");
-    currentSlide = i;
+    currentSlide = slideChanger(i);
   });
 }
