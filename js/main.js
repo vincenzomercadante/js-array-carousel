@@ -4,6 +4,7 @@ const allImage = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
 // Recupero gli elementi HTML
 const arrowNext = document.querySelector(".arrow-next");
 const arrowPrev = document.querySelector(".arrow-prev");
+const carousel = document.querySelector(".carousel-container");
 const slideContainer = document.querySelector(".slide-container");
 const thumbContainer = document.querySelector(".preview");
 
@@ -29,10 +30,8 @@ const allPrevSlides = document.getElementsByClassName("p-slide");
 // variabile per visualizzare la slide corrente
 let currentSlide = 0;
 
-// intervallo in cui si cambia la slide
-let clock = setInterval(function () {
-  currentSlide = slideChanger(currentSlide + 1);
-}, 3000);
+// auto play slide
+let IntervalClock = startAutoPlay();
 
 // creazione event listeners del bottone next
 arrowNext.addEventListener("click", function () {
@@ -45,15 +44,13 @@ arrowPrev.addEventListener("click", function () {
 });
 
 // evento quando abbandono il mouse dal container
-slideContainer.addEventListener("mouseleave", function () {
-  clock = setInterval(function () {
-    currentSlide = slideChanger(currentSlide + 1);
-  }, 3000);
+carousel.addEventListener("mouseleave", function () {
+  IntervalClock = startAutoPlay();
 });
 
 // evento quando passo sopra al container con il mouse
-slideContainer.addEventListener("mouseover", function () {
-  clearInterval(clock);
+carousel.addEventListener("mouseover", function () {
+  stopAutoplay(IntervalClock);
 });
 
 // array delle thumb

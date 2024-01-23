@@ -22,3 +22,23 @@ function slideChanger(index) {
 
   return index;
 }
+/**
+ *
+ * @returns {number} clock restituisce il clock dell'intervallo dell'autoplay
+ *
+ */
+function startAutoPlay() {
+  let clock = setInterval(function () {
+    currentSlide = slideChanger(currentSlide + 1);
+  }, 3000);
+
+  return clock;
+}
+
+/**
+ *
+ * @param {number} clock numero relativo al clock da clearare
+ */
+function stopAutoplay(clock) {
+  clearInterval(clock);
+}
